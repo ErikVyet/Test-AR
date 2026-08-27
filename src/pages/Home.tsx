@@ -6,7 +6,17 @@ import { CanvasLoader } from "../components/common/CanvasLoader";
 import { OrbitControls } from "@react-three/drei";
 import { ApartmentModel } from "../components/common/ApartmentModel";
 
-const store = createXRStore();
+const store = createXRStore({
+    hand: false,
+    handTracking: false,
+    anchors: false,
+    layers: false,
+    meshDetection: false,
+    planeDetection: false,
+    hitTest: false,
+    depthSensing: false,
+    domOverlay: false
+});
 
 export default function Home() {
     const handleEnterARMode = async () => {
@@ -18,6 +28,8 @@ export default function Home() {
             alert(`AR mode is not supported on your current device or browser. ${error}`);
         }
     };
+
+    navigator.xr?.isSessionSupported('immersive-ar').then(console.log);
 
     return (
         <Box className="w-full h-screen place-content-center place-items-center text-center">
